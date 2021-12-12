@@ -77,7 +77,9 @@ if [[ ! "${PATH}" == *${XDG_DATA_HOME}/fzf/bin* ]]; then
     export PATH="${PATH:+${PATH}:}/${XDG_DATA_HOME}/fzf/bin"
 fi
 [[ $- == *i* ]] && . "${XDG_DATA_HOME}/fzf/shell/completion.zsh" 2> /dev/null
-. "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
+
+# Need to double check the below. I do not have this directory
+# . "${XDG_DATA_HOME}/fzf/shell/key-bindings.zsh"
 
 # Enable asdf to manage various programming runtime versions.
 [ -f "${XDG_DATA_HOME}/asdf/asdf.sh" ] && . "${XDG_DATA_HOME}/asdf/asdf.sh"
@@ -109,5 +111,6 @@ export FZF_DEFAULT_OPTS="--color=dark"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Load / source zsh plugins.
-. "${XDG_DATA_HOME}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-. "${XDG_DATA_HOME}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# I do not have this directory
+# . "${XDG_DATA_HOME}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+# . "${XDG_DATA_HOME}/zsh-autosuggestions/zsh-autosuggestions.zsh"
