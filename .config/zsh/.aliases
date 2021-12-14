@@ -168,7 +168,8 @@ alias pbpaste="xclip -selection clipboard -o"
 alias zet="date +%Y%m%d%H%M%S | pbcopy && pbpaste"
 # alias "c=xclip"
 # alias "v=xclip -o"
-alias dd="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
+alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
+alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
 
 set -o vi
 
