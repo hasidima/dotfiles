@@ -354,6 +354,12 @@ noremap <F7> :set list!<CR>
 inoremap <F7> <C-o>:set list!<CR>
 cnoremap <F7> <C-c>:set list!<CR>
 
+" Set text expanding for date and time in the file name in VIM when saving the file
+cnoremap qqzet <C-R>=strftime("%Y%m%d%H%M%S")<CR>
+cnoremap qqdd <C-R>=strftime("%Y-%m-%d")<CR>
+cnoremap qqdt <C-R>=strftime("%Y-%m-%d_%H%M")<CR>
+
+
 " Move 1 more lines up or down in normal and visual selection modes.
 nnoremap <C-k> :m .-2<CR>==
 nnoremap <C-j> :m .+1<CR>==

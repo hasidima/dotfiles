@@ -180,7 +180,16 @@ alias fzfp="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:p
 
 alias fzfh="fzf --preview='head -n 30 {}'"
 
+alias mkdirzet="mkdir $(date +"%Y%m%d%H%M%S")"
+alias mkdirqqdd="mkdir $(date +"%Y-%m-%d")"
+alias mkdirqqdt="mkdir $(date +"%Y-%m-%d_%H%M")"
+alias touchqqdt="touch $(date +"%Y-%m-%d_%H%M").md"
+alias touchzet="touch $(date +"%Y%m%d%H%M%S").md"
+alias touchqqdd="touch $(date +"%Y-%m-%d").md"
 
+
+
+# Setup Vim as my editor
 export EDITOR=vim
 PATH="$PATH:$HOME/bin"
 
