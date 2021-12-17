@@ -111,6 +111,6 @@ export FZF_DEFAULT_OPTS="--color=dark"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Load / source zsh plugins.
-# I do not have this directory
+# Check: I do not have this directory
 # . "${XDG_DATA_HOME}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 # . "${XDG_DATA_HOME}/zsh-autosuggestions/zsh-autosuggestions.zsh"
