@@ -31,70 +31,6 @@ weather () {
     curl "https://wttr.in/${1}"
 }
 
-change-terminal-font () {
-    [[ -z "${1}" || -z "${2}" ]] && echo "Usage: change-terminal-font FROM_SIZE TO_SIZE"
-
-    local from="${1}"
-    local to="${2}"
-    local windows_user="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
-    local terminal_config="/c/Users/${windows_user}/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-
-    perl -i -pe "s/\"fontSize\": ${from}/\"fontSize\": ${to}/g" "${terminal_config}"
-}
-
-start-recording () {
-    local from_terminal_font_size="9"
-    local to_terminal_font_size="18"
-
-    mv "${HISTFILE}" "${HISTFILE}.bak"
-    local HISTSIZE=0
-
-    rm -f /tmp/%*
-    change-terminal-font "${from_terminal_font_size}" "${to_terminal_font_size}"
-
-    if [[ "${1}" = "--obs" ]]; then
-        cd "/c/Program Files/obs-studio/bin/64bit"
-        wslview obs64.exe
-        cd - > /dev/null 2>&1
-    fi
-
-    cat << EOF
--> Shell history has been backed up to ${HISTFILE}
--> Temporary Vim files have been deleted from /tmp
--> Terminal font has been increased to ${to_terminal_font_size}
-
-Plan to switch between tmux sessions?
-  - 1. Leader + CTRL + s to save your sessions
-  - 2. tmux kill-server
-
-Going to use a browser?
-  - Use one with a cleared history
-
-Various tips:
-  - Use CTRL + L instead of running clear to clear your screen as needed
-  - Make sure your windows are positioned correctly with Sizer
-  - Be mindful of secrets in any .env file!
-  - Make sure OBS is actually recording / streaming (if and when applicable)
-EOF
-}
-
-stop-recording () {
-    local from_terminal_font_size="18"
-    local to_terminal_font_size="14"
-
-    mv "${HISTFILE}.bak" "${HISTFILE}"
-    fc -R
-
-    change-terminal-font "${from_terminal_font_size}" "${to_terminal_font_size}"
-
-    cat << EOF
--> Shell history has been restored
--> Terminal font has been reverted to ${to_terminal_font_size}
-
-Nice work, here's a few things to maybe do:
-  - Restore tmux sessions by running tmux and then Leader + CTRL + r
-EOF
-}
 
 if command -v brew > /dev/null 2>&1; then
     alias ls="ls -G"
@@ -117,18 +53,14 @@ alias l="ls -CF"
 alias cfa="${EDITOR} ${ZDOTDIR}/.aliases"
 alias cfp="${EDITOR} ${ZDOTDIR}/.zprofile"
 alias cfr="${EDITOR} ${ZDOTDIR}/.zshrc"
-alias sfr=". ${ZDOTDIR}/.zshrc"
+# alias sfr=". ${ZDOTDIR}/.zshrc"
 alias cfv="${EDITOR} ${HOME}/.vimrc"
 alias cft="${EDITOR} ${HOME}/.tmux.conf"
 alias cfb="${EDITOR} ${HOME}/.bashrc"
 
 alias drun='docker run --rm -it -v "${PWD}":/app -w /app'
 
-alias rmpyc="find . -type d -name '__pycache__' -exec rm -rf {} \;"
 
-alias jek="RUBYOPT='-W0' bundle exec jekyll serve --config _config.yml,_config.dev.yml --drafts --livereload"
-
-alias ymp3="youtube-dl --extract-audio --audio-format mp3"
 
 alias octal="stat -c '%a %n'"
 
@@ -140,10 +72,6 @@ alias 755d="find . -type d -exec chmod 755 {} \;"
 
 alias 644f="find . -type f -exec chmod 644 {} \;"
 
-if ! command -v brew > /dev/null 2>&1; then
-    alias open="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
-fi
-
 alias vss="sort -u ${HOME}/.vim/spell/en.utf-8.add -o ${HOME}/.vim/spell/en.utf-8.add"
 
 alias vdt="rm /tmp/%*"
@@ -154,25 +82,17 @@ alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:pre
 
 alias gcl="git diff --name-only --diff-filter=U"
 
-alias k="kubectl"
-alias tf="terraform"
 
 # A way to define and run tasks in a project. It's like make except it's pure
 # Bash so there's no make limitations like not being able to forward arguments.
 alias run=./run
 
-# This is specific to WSL 2. If the WSL 2 VM goes rogue and decides not to free
-# up memory, this command will free your memory after about 20-30 seconds.
-#   Details: https://github.com/microsoft/WSL/issues/4166#issuecomment-628493643
-alias drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
 
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
 alias zet="date +%Y%m%d%H%M%S | pbcopy && pbpaste"
 alias zetd="date +%Y%m%d | pbcopy && pbpaste"
 
-# alias "c=xclip"
-# alias "v=xclip -o"
 alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
 alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
 
@@ -185,12 +105,14 @@ alias fzfp="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:p
 
 alias fzfh="fzf --preview='head -n 30 {}'"
 
-alias mkdirzet="mkdir $(date +"%Y%m%d%H%M%S")"
-alias mkdirqqdd="mkdir $(date +"%Y-%m-%d")"
-alias mkdirqqdt="mkdir $(date +"%Y-%m-%d_%H%M")"
-alias touchqqdt="touch $(date +"%Y-%m-%d_%H%M").md"
-alias touchzet="touch $(date +"%Y%m%d%H%M%S").md"
-alias touchqqdd="touch $(date +"%Y-%m-%d").md"
+# The below has a problem of creating files and folders with time from the clipboard but it is not correct. Need to research on this.
+
+# alias mkdirzet="mkdir $(date +"%Y%m%d%H%M%S")"
+# alias mkdirqqdd="mkdir $(date +"%Y-%m-%d")"
+# alias mkdirqqdt="mkdir $(date +"%Y-%m-%d_%H%M")"
+# alias touchqqdt="touch $(date +"%Y-%m-%d_%H%M").md"
+# alias touchzet="touch $(date +"%Y%m%d%H%M%S").md"
+# alias touchqqdd="touch $(date +"%Y-%m-%d").md"
 
 
 
