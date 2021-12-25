@@ -794,3 +794,18 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
+
+
+" This is to be able to save a file with new directories in VIM by calling
+" `:W` function
+function! s:WriteCreatingDirs()
+  let l:file=expand("%")
+  if empty(getbufvar(bufname("%"), '&buftype')) && l:file !~# '\v^\w+\:\/'
+    let dir=fnamemodify(l:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+  write
+endfunction
+command! W call s:WriteCreatingDirs()
