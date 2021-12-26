@@ -107,6 +107,38 @@ just add this to the begining of the grep command
 # List file online once in the search
 option -m1
 
+# grep with logical AND and OR operators
+
+There are lot of ways to use grep with logical operators.
+
+## OR
+* Use \| to separate multiple patterns for the OR condition.
+
+
+    Example: 
+`grep 'pattern1\|pattern2' filename`
+
+* Use the -E option to send multiple patterns for the OR condition.
+
+    Example: 
+`grep -E 'pattern1|pattern2' filename`
+
+* Using a single -e matches only one pattern, but using multiple -e option matches more than one pattern.
+
+    Example: 
+`grep -e pattern1 -e pattern2 filename`
+
+* grep -v can simulate the NOT operation.
+
+## AND
+* There is no AND operator in grep, but you can brute-force simulate AND by using the -E option.
+
+    Example : 
+`grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename`
+
+    The above example will match all the lines that contain both pattern1 and pattern2 in either order.)
+
+
 
 # Best Example for my searches
 
@@ -120,7 +152,17 @@ $ grep --color=always --include="*.md" -wrinI "kimiko" | grep -i "AND search ano
 $ grep --color=always --include="*.md" -wrinI -m1 "kimiko" | grep -i "AND search another word or phrase"
 online list file once with option -m1
 
+$ grep --color=always --include="*.md" -wrinI -m1 -e "kimiko" -e "dima"  
+ this gives OR options after -e
 
+$ grep --color=always --include="*.md" -wrinI -m1 -E "kimiko|dima"
+this gives AND options after -E 
 
+$ egrep --color=always --include="*.md" --include="*.txt" -wrinI -m1 "kimiko|dima"
+using egrep which is the same as grep -E for OR by using "\|", AND by using "xxx|yyy"
+can use --include="*.xxx" several times for many file types
+
+# Use Riggrep in VIM
+$ :Rg <search pattern>
 
 

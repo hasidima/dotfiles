@@ -90,11 +90,12 @@ alias run=./run
 
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
-alias zet="date +%Y%m%d%H%M%S | pbcopy && pbpaste"
-alias zetd="date +%Y%m%d | pbcopy && pbpaste"
+alias zet="TZ=GM date +%Y%m%d%H%M%S | pbcopy && pbpaste"
+alias zetd="TZ=GMT date +%Y%m%d | pbcopy && pbpaste"
 
 alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
 alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
+alias zetfile="mkdirzetfile.sh"
 
 set -o vi
 

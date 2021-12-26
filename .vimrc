@@ -809,3 +809,10 @@ function! s:WriteCreatingDirs()
   write
 endfunction
 command! W call s:WriteCreatingDirs()
+
+" the below does not search, need to experiment more with grep in Vim. Instead
+" us :Gr
+" opens search results in a window w/ links and highlight the matches
+" command! -nargs=+ Grep execute 'silent grep! -w -r -i -n -I --exclude *.{json,pyc} . -e <args>' | copen | execute 'silent /<args>'
+" shift-control-* Greps for the word under the cursor
+" :nmap <leader>g :Grep <c-r>=expand("<cword>")<cr><cr>
