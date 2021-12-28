@@ -50,15 +50,11 @@ alias l="ls -CF"
 
 
 # Aliases to configure dot files
-alias cfa="${EDITOR} ${ZDOTDIR}/.aliases"
-alias cfp="${EDITOR} ${ZDOTDIR}/.zprofile"
-alias cfr="${EDITOR} ${ZDOTDIR}/.zshrc"
-# alias sfr=". ${ZDOTDIR}/.zshrc"
-alias cfv="${EDITOR} ${HOME}/.vimrc"
-alias cft="${EDITOR} ${HOME}/.tmux.conf"
-alias cfb="${EDITOR} ${HOME}/.bashrc"
+# alias cfv="${EDITOR} ${HOME}/.vimrc"
+# alias cft="${EDITOR} ${HOME}/.tmux.conf"
+# alias cfb="${EDITOR} ${HOME}/.bashrc"
 
-alias drun='docker run --rm -it -v "${PWD}":/app -w /app'
+# alias drun='docker run --rm -it -v "${PWD}":/app -w /app'
 
 
 
@@ -68,13 +64,13 @@ alias follow="namei -om"
 
 alias diff="diff --color -u"
 
-alias 755d="find . -type d -exec chmod 755 {} \;"
+# alias 755d="find . -type d -exec chmod 755 {} \;"
 
-alias 644f="find . -type f -exec chmod 644 {} \;"
+# alias 644f="find . -type f -exec chmod 644 {} \;"
 
-alias vss="sort -u ${HOME}/.vim/spell/en.utf-8.add -o ${HOME}/.vim/spell/en.utf-8.add"
+# alias vss="sort -u ${HOME}/.vim/spell/en.utf-8.add -o ${HOME}/.vim/spell/en.utf-8.add"
 
-alias vdt="rm /tmp/%*"
+# alias vdt="rm /tmp/%*"
 
 alias gi="git init && git symbolic-ref HEAD refs/heads/main"
 
@@ -85,7 +81,7 @@ alias gcl="git diff --name-only --diff-filter=U"
 
 # A way to define and run tasks in a project. It's like make except it's pure
 # Bash so there's no make limitations like not being able to forward arguments.
-alias run=./run
+# alias run=./run
 
 
 alias pbcopy="xclip -selection clipboard"
@@ -95,7 +91,11 @@ alias zetd="TZ=GMT date +%Y%m%d | pbcopy && pbpaste"
 
 alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
 alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
-alias zetfile="mkdirzetfile.sh"
+alias zetfile='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
+
+# This is an alternative to create zetfile but stay in the current directory rather than moving to the directory of the created file
+alias zetfile2='d="$(date +"%Y%m%d%H%M%S")" && mkdir "$d" && pushd "$d" && vim readme.md; popd'
+
 
 set -o vi
 
