@@ -72,11 +72,8 @@ alias diff="diff --color -u"
 
 # alias vdt="rm /tmp/%*"
 
-alias gi="git init && git symbolic-ref HEAD refs/heads/main"
-
 alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
-alias gcl="git diff --name-only --diff-filter=U"
 
 
 # A way to define and run tasks in a project. It's like make except it's pure
@@ -103,6 +100,9 @@ alias myip="curl http://ipecho.net/plain; echo"
 
 # Git related aliases 
 alias gitupdate="gitupdate.sh"
+alias gi="git init && git symbolic-ref HEAD refs/heads/main"
+alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d%_H%M")" && git push'
+
 
 # Brouse and preview the files
 alias fzfp="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
