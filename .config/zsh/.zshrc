@@ -241,9 +241,9 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 
 ###############################################################
-# The below section is taken from 
+# The below section is taken from
 # https://gist.github.com/johanbove
-# as he has a lot of good dot files for TaskWarrier. 
+# as he has a lot of good dot files for TaskWarrier.
 
 # This comes to add indicator to the bash prompt with TaskWarrier
 # https://gist.github.com/johanbove/328506117db2edff7f5c99d05afde0ec
@@ -252,53 +252,53 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # source ~/.bash_colours
 # source ~/.git-prompt.sh
 
-TICK="✓"
-CROSS="✗"
+#TICK="✓"
+#CROSS="✗"
 
-DONE="ALL OK"
-URGENT="!"
-OVERDUE="Overdue"
-DUETODAY="Today"
-DUETOMORROW="Tomorrow"
+#DONE="ALL OK"
+#URGENT="!"
+#OVERDUE="Overdue"
+#DUETODAY="Today"
+#DUETOMORROW="Tomorrow"
 
 # TaskWarrior integration
 # Inspired by Paul Fenwick (https://gist.github.com/pjf)
-function task_indicator {
-  if [ `task +READY +OVERDUE count` -gt "0" ]; then
-     echo "$OVERDUE"
-  elif [ `task +READY +TODAY count` -gt "0" ]; then
-     echo "$DUETODAY"
-  elif [ `task +READY +TOMORROW count` -gt "0" ]; then
-     echo "$DUETOMORROW"
-  elif [ `task +READY urgency \> 10 count` -gt "0" ]; then
-     echo "$URGENT"
-  else
-     echo "$DONE"
-  fi
- }
+#function task_indicator {
+#  if [ `task +READY +OVERDUE count` -gt "0" ]; then
+#     echo "$OVERDUE"
+#  elif [ `task +READY +TODAY count` -gt "0" ]; then
+#     echo "$DUETODAY"
+#  elif [ `task +READY +TOMORROW count` -gt "0" ]; then
+#     echo "$DUETOMORROW"
+#  elif [ `task +READY urgency \> 10 count` -gt "0" ]; then
+#     echo "$URGENT"
+#  else
+#     echo "$DONE"
+#  fi
+# }
 
 # Git Integration
-function git_branch_status () {
-BRANCH=`git rev-parse --abbrev-ref HEAD 2> /dev/null`;
-  if [ -n "$BRANCH" ]; then
-     DIRTY=`git status --porcelain --untracked-files=no 2> /dev/null`;
-       if [ -n "$DIRTY" ]; then
-          echo "$BRed $CROSS";
-       else
-          echo "$BGreen $TICK";
-       fi;
-  fi;
- }
+#function git_branch_status () {
+#BRANCH=`git rev-parse --abbrev-ref HEAD 2> /dev/null`;
+#  if [ -n "$BRANCH" ]; then
+#     DIRTY=`git status --porcelain --untracked-files=no 2> /dev/null`;
+#       if [ -n "$DIRTY" ]; then
+#          echo "$BRed $CROSS";
+#       else
+#          echo "$BGreen $TICK";
+#       fi;
+#  fi;
+# }
 
 # Updates the Prompt correctly
-function update_PS1 () {
+#function update_PS1 () {
 
 #PS1='$()'"\W$BYellow$(__git_ps1) $(task_indicator) $Color_Off \$ "
-PS1="$(git_branch_status) \W$BYellow$(__git_ps1) $(task_indicator) $Color_Off \$ "
-}
+#PS1="$(git_branch_status) \W$BYellow$(__git_ps1) $(task_indicator) $Color_Off \$ "
+#}
 
-shopt -u promptvars
-PROMPT_COMMAND=update_PS1
+#shopt -u promptvars
+#PROMPT_COMMAND=update_PS1
 
 ## TaskWarrior
 ## <https://taskwarrior.org/docs/>
@@ -313,7 +313,7 @@ PROMPT_COMMAND=update_PS1
 # urgencyPrio=4
 
 # echo "Setting up TaskWarrior and TimeWarrior with ${nrOfProjects} projects..."
-echo "DONE = $DONE / URGENT = $URGENT / OVERDUE = $OVERDUE / DUETODAY = $DUETODAY  / DUETOMORROW = $DUETOMORROW"
+# echo "DONE = $DONE / URGENT = $URGENT / OVERDUE = $OVERDUE / DUETODAY = $DUETODAY  / DUETOMORROW = $DUETOMORROW"
 
 # Loop will set up task next, task add, task log and timew start for all projects listed above
 #for (( i = 0; i < $nrOfProjects; i++ ));
@@ -361,12 +361,10 @@ alias tclw='task end.after:today-1wk completed'
 #alias backupDotFiles='sh -c ~/MyScripts/backupDotFiles.sh'
 
 # GIT
-alias gc='git checkout'
-alias gf='git fetch'
-alias gs='git status'
-alias gl='git log --oneline'
-alias gp='git pull'
+#alias gc='git checkout'
+#alias gf='git fetch'
+#alias gs='git status'
+#alias gl='git log --oneline'
+#alias gp='git pull'
 
-alias gbl='git for-each-ref --sort=committerdate refs/heads/ --format="%(color: red)%(committerdate:short) %(color:cyan)%(refname:short)"'
-
-
+#alias gbl='git for-each-ref --sort=committerdate refs/heads/ --format="%(color: red)%(committerdate:short) %(color:cyan)%(refname:short)"'
