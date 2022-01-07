@@ -101,6 +101,9 @@ set -o vi
 
 alias myip="curl http://ipecho.net/plain; echo"
 
+# Git related aliases 
+alias gitupdate="gitupdate.sh"
+
 # Brouse and preview the files
 alias fzfp="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
@@ -108,7 +111,9 @@ alias fzfh="fzf --preview='head -n 30 {}'"
 
 # The below has a problem of creating files and folders with time from the clipboard but it is not correct. Need to research on this.
 
-# alias mkdirzet="mkdir $(date +"%Y%m%d%H%M%S")"
+alias zetmkdir='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir  "$d" && cd "$d" '
+alias zetmkdir2='d="$(date +"%Y%m%d%H%M%S")" && mkdir "$d" &&      pushd "$d"; popd'
+
 # alias mkdirqqdd="mkdir $(date +"%Y-%m-%d")"
 # alias mkdirqqdt="mkdir $(date +"%Y-%m-%d_%H%M")"
 # alias touchqqdt="touch $(date +"%Y-%m-%d_%H%M").md"
@@ -120,6 +125,7 @@ alias fzfh="fzf --preview='head -n 30 {}'"
 # Setup Vim as my editor
 export EDITOR=vim
 PATH="$PATH:$HOME/bin"
+PATH="$PATH:$HOME/dotfiles/scriptd"
 
 # Support for Language Input via iBus
 export GTK_IM_MODULE="ibus"
