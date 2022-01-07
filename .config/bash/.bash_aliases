@@ -101,7 +101,7 @@ alias myip="curl http://ipecho.net/plain; echo"
 # Git related aliases 
 alias gitupdate="gitupdate.sh"
 alias gi="git init && git symbolic-ref HEAD refs/heads/main"
-alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d%_H%M")" && git push'
+alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d_%H%M")" && git push'
 
 
 # Brouse and preview the files
