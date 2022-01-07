@@ -106,6 +106,7 @@ set -o vi
 
 export EDITOR=vim
 PATH="$PATH:$HOME/bin"
+PATH="$PATH:$HOME/dotfiles/scriptd"
 
 # Support for Language Input via iBus
 # export GTK_IM_MODULE="ibus"
