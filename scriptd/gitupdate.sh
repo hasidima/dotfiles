@@ -30,10 +30,10 @@ for i in $(find . -name ".git" | cut -c 3-); do
     # finally pull
     git pull origin master;
     git add --all;
-    pause 'Press [Enter] key to continue...'
+#    pause 'Press [Enter] key to continue...'
     git commit -m "updated git via script";
     git push;
-    pause 'Press [Enter] key to continue...'
+#    pause 'Press [Enter] key to continue...'
     # lets get back to the CUR_DIR
     cd $CUR_DIR
 done

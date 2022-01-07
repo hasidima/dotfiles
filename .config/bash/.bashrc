@@ -129,11 +129,11 @@ PATH="$PATH:$HOME/dotfiles/scriptd"
 TICK="✓"
 CROSS="✗"
 
-DONE="🖖"
-URGENT="🔥"
-OVERDUE="👎"
-DUETODAY="🔔"
-DUETOMORROW="⏰"
+DONE="ALL OK"
+URGENT="!"
+OVERDUE="Overdue"
+DUETODAY="Today"
+DUETOMORROW="Tomorrow"
 
 # TaskWarrior integration
 # Inspired by Paul Fenwick (https://gist.github.com/pjf)
@@ -179,26 +179,26 @@ PROMPT_COMMAND=update_PS1
 
 # Declares an array of projects in bash
 # The position in the array counts for the id and starts counting at 1
-declare -a projects=('ProjectX' 'ProjectY');
+# declare -a projects=('ProjectX' 'ProjectY');
 
 # http://stackoverflow.com/a/16553351
 # get length of an array
-nrOfProjects=${#projects[@]}
-urgencyPrio=4
+# nrOfProjects=${#projects[@]}
+# urgencyPrio=4
 
-echo "Setting up TaskWarrior and TimeWarrior with ${nrOfProjects} projects..."
+# echo "Setting up TaskWarrior and TimeWarrior with ${nrOfProjects} projects..."
 echo "DONE = $DONE / URGENT = $URGENT / OVERDUE = $OVERDUE / DUETODAY = $DUETODAY  / DUETOMORROW = $DUETOMORROW"
 
 # Loop will set up task next, task add, task log and timew start for all projects listed above
-for (( i = 0; i < $nrOfProjects; i++ ));
-do
-  echo "Project $i = ${projects[i]}"
-  alias tn$i="task next project:${projects[i]} +READY"
-  alias tnu$i="tn${i} urgency \> ${urgencyPrio}"
-  alias ta$i="task add project:${projects[i]}"
-  alias tl$i="task log project:${projects[i]}"
-  alias twst$i="timew start ${projects[i]}"
-done;
+#for (( i = 0; i < $nrOfProjects; i++ ));
+#do
+#  echo "Project $i = ${projects[i]}"
+#  alias tn$i="task next project:${projects[i]} +READY"
+#  alias tnu$i="tn${i} urgency \> ${urgencyPrio}"
+#  alias ta$i="task add project:${projects[i]}"
+#  alias tl$i="task log project:${projects[i]}"
+#  alias twst$i="timew start ${projects[i]}"
+#done;
 
 # General TaskWarrior commands
 alias t='task'
@@ -208,16 +208,16 @@ alias ta='task add'
 alias tan='task annotate'
 alias tl='task log'
 alias tac='task active'
-alias tap='task add project:Personal'
-alias taw='task add project:Work'
+# alias tap='task add project:Personal'
+# alias taw='task add project:Work'
 
 # TaskWarrior reports
 # Tip: use `task timesheet` for a full report
 alias tt='task modified:today completed'
 alias ty='task modified:yesterday completed'
 alias tey='task end.after:yesterday completed'
-alias twork='task context work'
-alias tpers='task context personal'
+# alias twork='task context work'
+# alias tpers='task context personal'
 
 # Show task I completed in the last week
 alias tclw='task end.after:today-1wk completed'

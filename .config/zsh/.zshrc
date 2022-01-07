@@ -238,3 +238,135 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+
+###############################################################
+# The below section is taken from 
+# https://gist.github.com/johanbove
+# as he has a lot of good dot files for TaskWarrier. 
+
+# This comes to add indicator to the bash prompt with TaskWarrier
+# https://gist.github.com/johanbove/328506117db2edff7f5c99d05afde0ec
+# See https://gist.github.com/pjf/051aa4ef326d493beec950823f7edfd8#file-bashrc
+# Make our prompt awesome. :)
+# source ~/.bash_colours
+# source ~/.git-prompt.sh
+
+TICK="✓"
+CROSS="✗"
+
+DONE="ALL OK"
+URGENT="!"
+OVERDUE="Overdue"
+DUETODAY="Today"
+DUETOMORROW="Tomorrow"
+
+# TaskWarrior integration
+# Inspired by Paul Fenwick (https://gist.github.com/pjf)
+function task_indicator {
+  if [ `task +READY +OVERDUE count` -gt "0" ]; then
+     echo "$OVERDUE"
+  elif [ `task +READY +TODAY count` -gt "0" ]; then
+     echo "$DUETODAY"
+  elif [ `task +READY +TOMORROW count` -gt "0" ]; then
+     echo "$DUETOMORROW"
+  elif [ `task +READY urgency \> 10 count` -gt "0" ]; then
+     echo "$URGENT"
+  else
+     echo "$DONE"
+  fi
+ }
+
+# Git Integration
+function git_branch_status () {
+BRANCH=`git rev-parse --abbrev-ref HEAD 2> /dev/null`;
+  if [ -n "$BRANCH" ]; then
+     DIRTY=`git status --porcelain --untracked-files=no 2> /dev/null`;
+       if [ -n "$DIRTY" ]; then
+          echo "$BRed $CROSS";
+       else
+          echo "$BGreen $TICK";
+       fi;
+  fi;
+ }
+
+# Updates the Prompt correctly
+function update_PS1 () {
+
+#PS1='$()'"\W$BYellow$(__git_ps1) $(task_indicator) $Color_Off \$ "
+PS1="$(git_branch_status) \W$BYellow$(__git_ps1) $(task_indicator) $Color_Off \$ "
+}
+
+shopt -u promptvars
+PROMPT_COMMAND=update_PS1
+
+## TaskWarrior
+## <https://taskwarrior.org/docs/>
+
+# Declares an array of projects in bash
+# The position in the array counts for the id and starts counting at 1
+# declare -a projects=('ProjectX' 'ProjectY');
+
+# http://stackoverflow.com/a/16553351
+# get length of an array
+# nrOfProjects=${#projects[@]}
+# urgencyPrio=4
+
+# echo "Setting up TaskWarrior and TimeWarrior with ${nrOfProjects} projects..."
+echo "DONE = $DONE / URGENT = $URGENT / OVERDUE = $OVERDUE / DUETODAY = $DUETODAY  / DUETOMORROW = $DUETOMORROW"
+
+# Loop will set up task next, task add, task log and timew start for all projects listed above
+#for (( i = 0; i < $nrOfProjects; i++ ));
+#do
+#  echo "Project $i = ${projects[i]}"
+#  alias tn$i="task next project:${projects[i]} +READY"
+#  alias tnu$i="tn${i} urgency \> ${urgencyPrio}"
+#  alias ta$i="task add project:${projects[i]}"
+#  alias tl$i="task log project:${projects[i]}"
+#  alias twst$i="timew start ${projects[i]}"
+#done;
+
+# General TaskWarrior commands
+alias t='task'
+alias tn='task next +READY'
+alias tnu="task next urgency \> ${urgencyPrio}"
+alias ta='task add'
+alias tan='task annotate'
+alias tl='task log'
+alias tac='task active'
+# alias tap='task add project:Personal'
+# alias taw='task add project:Work'
+
+# TaskWarrior reports
+# Tip: use `task timesheet` for a full report
+alias tt='task modified:today completed'
+alias ty='task modified:yesterday completed'
+alias tey='task end.after:yesterday completed'
+# alias twork='task context work'
+# alias tpers='task context personal'
+
+# Show task I completed in the last week
+alias tclw='task end.after:today-1wk completed'
+
+## TimeWarrior
+# alias twst='timew start'
+# alias twstop='timew stop'
+# alias tws='timew summary :week'
+# alias twlw='timew summary :lastweek'
+# alias twd='timew summary :day'
+
+## Backups
+#alias backupTasks='tar -czf ~/Documents/99_Zips/task.tar.gz ~/.task ~/.timewarrior'
+#alias backupTasks='sh -c ~/MyScripts/backupTasks.sh'
+#alias backupDotFiles='sh -c ~/MyScripts/backupDotFiles.sh'
+
+# GIT
+alias gc='git checkout'
+alias gf='git fetch'
+alias gs='git status'
+alias gl='git log --oneline'
+alias gp='git pull'
+
+alias gbl='git for-each-ref --sort=committerdate refs/heads/ --format="%(color: red)%(committerdate:short) %(color:cyan)%(refname:short)"'
+
+
