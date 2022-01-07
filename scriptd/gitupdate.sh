@@ -18,10 +18,15 @@ for i in $(find . -name ".git" | cut -c 3-); do
     cd ..;
 
     # finally pull
+    pause;
     git pull origin master;
+    pause;
     git add --all;
+    pause;
     git commit -m "updated git via script";
+    pause;
     git push;
+    pause;
     # lets get back to the CUR_DIR
     cd $CUR_DIR
 done
