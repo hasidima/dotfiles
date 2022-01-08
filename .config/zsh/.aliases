@@ -123,12 +123,13 @@ alias fzfh="fzf --preview='head -n 30 {}'"
 # alias touchzet="touch $(date +"%Y%m%d%H%M%S").md"
 # alias touchqqdd="touch $(date +"%Y-%m-%d").md"
 
-# Git related aliases 
+# Git related aliases
 alias gitupdate="gitupdate.sh"
-alias gi="git init && git symbolic-ref HEAD refs/heads/main"
+# alias gi="git init && git symbolic-ref HEAD refs/heads/main"
 alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d_%H%M")" && git push'
 
-
+# Aliases for searching
+alias search="egrep --color=always --include="*.md" --include="*.txt" -wrinI -m1"
 
 
 # Setup Vim as my editor
