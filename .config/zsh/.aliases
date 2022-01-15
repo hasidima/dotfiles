@@ -129,7 +129,7 @@ alias gitupdate="gitupdate.sh"
 alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d_%H%M")" && git push'
 
 # Aliases for searching
-alias search="egrep --color=always --include="*.md" --include="*.txt" -wrinI -m1"
+# alias ?='egrep --color=always --include="*.md" --include="*.txt" -wrinI -m1'
 
 
 # Setup Vim as my editor
