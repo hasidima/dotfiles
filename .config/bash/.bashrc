@@ -115,9 +115,9 @@ PATH="$PATH:$HOME/dotfiles/scriptd"
 # export PATH=/home/dima/.cargo/bin:$PATH
 
 
-# The below section is taken from 
+# The below section is taken from
 # https://gist.github.com/johanbove
-# as he has a lot of good dot files for TaskWarrier. 
+# as he has a lot of good dot files for TaskWarrier.
 
 # This comes to add indicator to the bash prompt with TaskWarrier
 # https://gist.github.com/johanbove/328506117db2edff7f5c99d05afde0ec
@@ -243,7 +243,7 @@ alias gp='git pull'
 
 alias gbl='git for-each-ref --sort=committerdate refs/heads/ --format="%(color: red)%(committerdate:short) %(color:cyan)%(refname:short)"'
 
-# This section is to set bash colors. It is originally in a different file .bash_colors but I put it together here for now. 
+# This section is to set bash colors. It is originally in a different file .bash_colors but I put it together here for now.
 
 # Inspired by Paul Fenwick (https://gist.github.com/pjf)
 # See https://gist.github.com/pjf/051aa4ef326d493beec950823f7edfd8#file-bashrc
@@ -319,3 +319,39 @@ On_IBlue='\[\e[0;104m\]'   # Blue
 On_IPurple='\[\e[0;105m\]' # Purple
 On_ICyan='\[\e[0;106m\]'   # Cyan
 On_IWhite='\[\e[0;107m\]'  # White
+
+### Convenient Aliases ###
+
+# Update commants
+alias aptup='sudo apt update && sudo apt upgrade'
+alias aptupd='sudo apt update'
+alias aptupg='sudo apt upgrade'
+alias aptin='sudo apt install'
+alias aptrm='sudo apt remove'
+
+# cd aliases
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+
+# Make directory with parents
+alias mkdir='mkdir -pv'
+
+# confirmations
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+alias ln='ln -i'
+
+# audio
+alias playwav='rhythmbox *.wav'
+alias playogg='rhythmbox *.ogg'
+alias playmp3='rhythmbox *.mp3'
+
+# video
+alias playavi='vlc *.avi'
+alias playmov='vlc *.mov'
+alias playmp4='vlc *.mp4'
+
+alias reboot='sudo reboot now'
+alias shutdown='sudo shutdown now'

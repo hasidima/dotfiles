@@ -81,7 +81,7 @@ grep — exclude examples
 In the following example, we will use the grep –exclude option to exclude one or more files during pattern search.
 
 ➜ grep --exclude "test.log" "grep" *.log
-...
+..
 
 ➜ grep --exclude "test.log" --exclude "m.log" "grep" *.log
 ...
@@ -104,7 +104,7 @@ In the following example, we will use the grep -I option to ignore the binary fi
 
 just add this to the begining of the grep command
 
-# List file online once in the search
+# List file once in the search
 option -m1
 
 # grep with logical AND and OR operators

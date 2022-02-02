@@ -44,10 +44,9 @@ else
     alias egrep="egrep --color=auto"
 fi
 
-alias ll="ls -alF"
-alias la="ls -A"
-alias l="ls -CF"
-
+alias ll="ls -alFh --color=auto"
+alias la="ls -A --color=auto"
+alias l="ls -CF --color=auto"
 
 # Aliases to configure dot files
 alias cfa="${EDITOR} ${ZDOTDIR}/.aliases"
@@ -124,9 +123,10 @@ alias fzfh="fzf --preview='head -n 30 {}'"
 # alias touchqqdd="touch $(date +"%Y-%m-%d").md"
 
 # Git related aliases
-alias gitupdate="gitupdate.sh"
+# alias gitupdate="gitupdate.sh"
 # alias gi="git init && git symbolic-ref HEAD refs/heads/main"
 alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d_%H%M")" && git push'
+alias gitreset='git fetch --all && git reset --hard origin/master'
 
 # Aliases for searching
 # alias ?='egrep --color=always --include="*.md" --include="*.txt" -wrinI -m1'
@@ -141,3 +141,39 @@ PATH="$PATH:$HOME/dotfiles/scriptd"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
 export XMODIFIERS="@im=ibus"
+
+### Convenient Aliases ###
+
+# Update commants
+alias aptup='sudo apt update && sudo apt upgrade'
+alias aptupd='sudo apt update'
+alias aptupg='sudo apt upgrade'
+alias aptin='sudo apt install'
+alias aptrm='sudo apt remove'
+
+# cd aliases
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+
+# Make directory with parents
+alias mkdir='mkdir -pv'
+
+# confirmations
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+alias ln='ln -i'
+
+# audio
+alias playwav='rhythmbox *.wav'
+alias playogg='rhythmbox *.ogg'
+alias playmp3='rhythmbox *.mp3'
+
+# video
+alias playavi='vlc *.avi'
+alias playmov='vlc *.mov'
+alias playmp4='vlc *.mp4'
+
+alias reboot='sudo reboot now'
+alias shutdown='sudo shutdown now'
