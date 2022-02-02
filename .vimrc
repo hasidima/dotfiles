@@ -272,6 +272,9 @@ set whichwrap=b,s,<,>
 set wildmenu
 set wildmode=full
 set wrap
+" The below can be used if I want to keep swapfiles in a certain directory
+" set swapfile
+" set dir=~/vimswap
 
 runtime! macros/matchit.vim
 
