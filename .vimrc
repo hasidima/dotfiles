@@ -241,7 +241,7 @@ set noerrorbells visualbell t_vb=
 set noshiftround
 set nospell
 set nostartofline
-" set number relativenumber
+set number relativenumber
 set number
 set regexpengine=1
 set ruler
