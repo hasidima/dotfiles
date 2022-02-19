@@ -89,15 +89,19 @@ alias run=./run
 
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
-alias zet="TZ=GMT date +%Y%m%d%H%M%S | pbcopy && pbpaste"
-alias zetd="TZ=GMT date +%Y%m%d | pbcopy && pbpaste"
+# alias zet="TZ=GMT date +%Y%m%d%H%M%S | pbcopy && pbpaste"
+# alias zetd="TZ=GMT date +%Y%m%d | pbcopy && pbpaste"
+alias zet="date +%Y%m%d%H%M%S | pbcopy && pbpaste"
+alias zetd="date +%Y%m%d | pbcopy && pbpaste"
+
 
 alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
 alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
-alias zetfile="mkdirzetfile.sh"
+# alias zetfile="mkdirzetfile.sh"
 
 # Add a directory with zet format in GMT time and open the file in that directory. Currently I am calling a script from the /usr/local/bin/
-# alias filezet='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
+# alias zetfile='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
+alias zetfile='d="$(date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
 
 # Add a directory with zet format in GMT but stay in the current directory
 # If you wish to remain in the same folder you executed the alias in (instead of ending up in the /[date] folder after exiting vim), utilize pushd and popd as such:

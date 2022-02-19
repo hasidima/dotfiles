@@ -83,12 +83,9 @@ alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:pre
 
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
-alias zet="TZ=GM date +%Y%m%d%H%M%S | pbcopy && pbpaste"
-alias zetd="TZ=GMT date +%Y%m%d | pbcopy && pbpaste"
-
-alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
+#  alias zetfile='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'alias qqdd="date +%Y-%m-%d | pbcopy && pbpaste"
 alias qqdt="date +%Y-%m-%d_%H%M | pbcopy && pbpaste"
-alias zetfile='d="$(TZ=GMT date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
+alias zetfile='d="$(date +"%Y%m%d%H%M%S")" && mkdir "$d" && cd "$d" && vim readme.md'
 
 # This is an alternative to create zetfile but stay in the current directory rather than moving to the directory of the created file
 alias zetfile2='d="$(date +"%Y%m%d%H%M%S")" && mkdir "$d" && pushd "$d" && vim readme.md; popd'
@@ -98,7 +95,7 @@ set -o vi
 
 alias myip="curl http://ipecho.net/plain; echo"
 
-# Git related aliases 
+# Git related aliases
 alias gitupdate="gitupdate.sh"
 alias gi="git init && git symbolic-ref HEAD refs/heads/main"
 alias gu='git pull && git add --all && git commit -m "updating $(date +"%Y-%m-%d_%H%M")" && git push'
