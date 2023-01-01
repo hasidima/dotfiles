@@ -8,3 +8,6 @@
 	path = ~/.gitconfig.user
 [pull]
 	rebase = false
+[user]
+	name = dima@hasikimi.com
+	email = dima@hasikimi.com
